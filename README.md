@@ -1,6 +1,6 @@
 
 
-# 🚀 Promptly-AI: The Ultimate AI Prompt Hub
+<h1 align="center"># 🚀 Promptly-AI: The Ultimate AI Prompt Hub</h1>h1>
 
 <p align="center">
   <strong>Your go-to platform for discovering, managing, and sharing the best AI prompts with ease!</strong>
@@ -21,32 +21,6 @@ Welcome to **Promptly-AI**\! 🎉 This project is a comprehensive, PHP-based web
 ## Architectural Approach: The MVC Pattern 🏛️
 
 This project is thoughtfully structured using the **Model-View-Controller (MVC)** architectural pattern to ensure a clean separation of concerns, making the codebase scalable, maintainable, and easy to understand.
-# Create a user flow diagram for Promptly.ai
-diagram_code = """
-flowchart TD
-    A[Landing Page] --> B[Browse Prompts]
-    B --> C[Prompt Gallery]
-    C --> D{Select Prompt?}
-    D -->|Yes| E[Prompt Details]
-    D -->|No| C
-    E --> F{User Action?}
-    F -->|Like/Unlike| G[Toast Notification]
-    F -->|Copy Prompt| H[Clipboard Feedback]
-    F -->|Contact| I[Contact Form]
-    G --> E
-    H --> E
-    I --> J[Submit Query]
-    J --> K[Admin Dashboard]
-    A --> I
-    E --> L{Continue Browsing?}
-    L -->|Yes| C
-    L -->|No| M[Exit]
-"""
-
-# Create the mermaid diagram and save as both PNG and SVG
-png_path, svg_path = create_mermaid_diagram(diagram_code, 'user_flow.png', 'user_flow.svg')
-print(f"Chart saved as PNG: {png_path}")
-print(f"Chart saved as SVG: {svg_path}")
 
   * **Model**: Manages the data and business logic. In our case, this is handled by files in `includes/` that interact with the MySQL database (e.g., fetching prompts, updating likes).
   * **View**: The presentation layer. These are our PHP files that contain HTML and display data to the user (e.g., `index.php`, `pages/prompts.php`). They render the UI.
@@ -63,18 +37,6 @@ print(f"Chart saved as SVG: {svg_path}")
   * **📞 Contact Form**: A simple way for users to send feedback and inquiries.
   * **📱 Fully Responsive**: A seamless experience on desktop, tablet, and mobile.
 
-graph LR
-    A[Visit Homepage] --> B[Browse Prompts]
-    B --> C{Like or Copy}
-    C -->|Like| D[AJAX like request]
-    C -->|Copy| E[Clipboard + Toast Notification]
-    D --> F[DB Updates like count]
-    E --> G[Confirmation Toast]
-    B --> H[Contact Form]
-    H --> I[AJAX Contact Submit]
-    I --> J[DB Stores Message]
-
-
 ### For Admins (Control Panel)
 
   * **📊 Insightful Dashboard**: Get a bird's-eye view of site activity.
@@ -82,22 +44,6 @@ graph LR
   * **📝 Full CRUD for Prompts**: Easily **C**reate, **R**ead, **U**pdate, and **D**elete prompts.
   * **👨‍💼 Admin Management**: Add, edit, or remove fellow administrators.
   * **📧 Message Center**: View and manage all user messages from the contact form.
-
-flowchart LR
-    Login[Secure Admin Login]
-    Dashboard[Dashboard Overview]
-    PromptsCRUD[Add/Edit/Delete Prompts]
-    AdminCRUD[Manage Admins]
-    ContactCRUD[Handle Contact Messages]
-    UploadImage[Image Uploads]
-    Reports[Real-Time Analytics]
-
-    Login --> Dashboard
-    Dashboard --> PromptsCRUD
-    Dashboard --> AdminCRUD
-    Dashboard --> ContactCRUD
-    PromptsCRUD --> UploadImage
-    Dashboard --> Reports
 
 
 ## 🛠️ Technology Stack
@@ -303,14 +249,14 @@ We welcome contributions of all kinds\! Whether it's a bug fix, a new feature, o
 
 -----
 
-\<p align="center"\>
-Crafted with ❤️ by \<strong\>Jeyamurugan Nadar\</strong\>
-\</p\>
+<p align="center">
+Crafted by <strong>Jeyamurugan Nadar </strong>
+</p>
 
-\<p align="center"\>
-\<a href="[https://github.com/nadarmurugan](https://www.google.com/search?q=https://github.com/nadarmurugan)"\>GitHub\</a\> | \<a href="mailto:murugannadar077@gmail.com"\>Email\</a\>
-\</p\>
+<p align="center">
+<a href="[https://github.com/nadarmurugan](https://www.google.com/search?q=https://github.com/nadarmurugan)"\>GitHub</a> | <a href="mailto:murugannadar077@gmail.com">Email</a>
+</p>
 
-\<p align="center"\>
-\<em\>Promptly.ai - Making AI prompts accessible to everyone.\</em\>
-\</p\>
+<p align="center">
+<em>Promptly.ai - Making AI prompts accessible to everyone.</em>
+</p>
