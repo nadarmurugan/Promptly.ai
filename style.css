@@ -1,0 +1,16 @@
+/* Custom tweaks for Promptly.ai */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+body::-webkit-scrollbar-track {
+    background: #1f2937; /* Tailwind gray-900 */
+}
+body::-webkit-scrollbar-thumb {
+    background: #6366f1; /* Indigo-500 */
+    border-radius: 8px;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5); /* Indigo focus ring */
+}
