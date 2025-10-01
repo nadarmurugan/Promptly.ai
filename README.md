@@ -314,38 +314,14 @@ CREATE INDEX idx_user_likes_user_ip ON user_likes(user_ip);
 - Test all functionality before submitting
 - Update documentation for new features
 
-## 📝 License
+<p align="center">  
+Crafted with ❤️ by **Jeyamurugan Nadar**  
+</p>
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+<p align="center">  
+[GitHub](https://www.google.com/search?q=https://github.com/nadarmurugan) | [Email](mailto:murugannadar077@gmail.com)  
+</p>
 
-## 📞 Support
-
-For support and questions:
-- Create an issue in the repository
-- Contact the development team
-- Check the documentation wiki
-
-## 🔄 Changelog
-
-### Version 1.0.0
-- Initial release
-- Basic prompt management
-- Admin panel functionality
-- Like system implementation
-- Contact form integration
-- Image upload support
-
-## 🔮 Roadmap
-
-- [ ] User registration and profiles
-- [ ] Advanced search and filtering
-- [ ] Prompt categories and tags
-- [ ] API rate limiting
-- [ ] Email notifications
-- [ ] Mobile app development
-- [ ] Advanced analytics dashboard
-- [ ] Multi-language support
-
----
-
-**Made with ❤️ by the Promptly-AI Team**
+<p align="center">  
+*Promptly.ai - Making AI prompts accessible to everyone.*  
+</p>
