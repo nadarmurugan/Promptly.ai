@@ -1,142 +1,194 @@
-Promptly.ai - Your AI-Powered Prompt Marketplace 🚀
-Welcome to Promptly.ai, a dynamic and beautifully crafted marketplace for AI prompts. This platform was born from a passion for creativity and the transformative power of AI. Our mission is to build a vibrant community where users can discover, share, and utilize high-quality AI prompts, making generative AI more accessible and inspiring for everyone.
+# Promptly.ai
 
-✨ Project Philosophy
-We believe that a great prompt is the key to unlocking the full potential of AI. Promptly.ai is designed to be:
+![Promptly.ai Banner](assets/images/shield-promptly-ai.png)
 
-User-Centric: Providing a seamless and enjoyable experience for discovering content.
+A comprehensive, user-friendly platform for discovering, sharing, and managing AI prompts with powerful admin tools and a seamless user experience.
 
-Community-Driven: Built with the vision of growing through user contributions and feedback.
+---
 
-Open & Accessible: Ensuring the platform is easy to set up, use, and contribute to.
+## Table of Contents
 
-🌟 Core Features
-For Users (Frontend)
-🎨 Stunning Prompt Gallery: A visually appealing gallery showcasing a curated collection of AI prompts.
+- [Overview](#overview)
+- [System Architecture](#system-architecture)
+- [User Experience Flow](#user-experience-flow)
+- [Technical Implementation](#technical-implementation)
+  - [Asynchronous Like System](#asynchronous-like-system)
+- [Installation & Quick Start](#installation--quick-start)
+- [Project Structure](#project-structure)
+- [Admin Panel Features](#admin-panel-features)
+- [API Endpoints](#api-endpoints)
+- [Database Schema](#database-schema)
+- [Future Roadmap](#future-roadmap)
+- [Contributing](#contributing)
+- [License](#license)
 
-✂️ One-Click Copy: Seamlessly copy any prompt with a single click and get instant feedback.
+---
 
-❤️ Interactive Like System: "Like" your favorite prompts and see the like-count update in real-time.
+## Overview
 
-🔍 Smart Search & Filtering: Easily find the prompts you're looking for with our intuitive search and filter options.
+Promptly.ai is a curated marketplace for high-quality AI prompts. Built with performance and security in mind, it offers:
 
-📱 Fully Responsive Design: Enjoy a flawless experience on any device, thanks to the mobile-first design built with Tailwind CSS.
+- Clean, responsive interface using Tailwind CSS
+- Asynchronous like system and instant clipboard copying
+- Secure admin panel with full CRUD operations
+- Mobile-first design and interactive map integration
 
-✉️ AJAX-Powered Contact Form: A non-intrusive contact form that submits your queries without interrupting your browsing session.
+---
 
-🗺️ Interactive Map: A Leaflet.js map integration in the contact section to display a physical location.
+## System Architecture
 
-For Admins (Backend)
-🔒 Secure Admin Login: A robust, session-based authentication system to protect the admin dashboard.
+Three-tier separation of concerns:
 
-✍️ Full Prompt Management (CRUD): Create, Read, Update, and Delete prompts with ease.
+![System Architecture](assets/images/architecture_final.png)
 
-📬 Contact Message Management: View and manage all user-submitted messages.
+1. **Presentation Layer**: HTML5, Tailwind CSS, JavaScript
+2. **Application Layer**: Core PHP, RESTful APIs, Session Management
+3. **Data Layer**: MySQL with PDO
 
-👥 Admin User Management (CRUD): Add, edit, and delete admin users.
+---
 
-📊 Centralized Dashboard: A comprehensive overview of all platform activity in a single-page interface.
+## User Experience Flow
 
-🛠️ Technology Stack
-Backend: Core PHP
+Illustration of the main user journey:
 
-Database: MySQL with PDO for secure connections
+![User Experience Flow](assets/images/user_flow.png)
 
-Frontend: HTML, Tailwind CSS, Vanilla JavaScript
+1. Landing Page → Browse Prompts
+2. View Prompt Details → Like/Unlike → Copy to Clipboard
+3. Contact Support → Submit Form → Admin Review
 
-APIs: Custom RESTful API
+---
 
-Libraries: Leaflet.js
+## Technical Implementation
 
-🗺️ Future Roadmap
-This is just the beginning! We have exciting plans for the future of Promptly.ai. Here's a glimpse of what's on the horizon:
+### Asynchronous Like System
 
-User Accounts: Allow users to create profiles, save their favorite prompts, and track their activity.
+![Asynchronous Like System](assets/images/like_system_flow.png)
 
-Community Submissions: Enable users to submit their own high-quality prompts for review and inclusion.
+- **Client-Side**: JS event listeners trigger AJAX
+- **Server-Side**: `toggle_like.php` updates likes in MySQL via PDO
+- **Feedback**: JSON response updates UI with new count and toast
 
-Advanced Categorization: Implement a robust tagging and category system for even better prompt discovery.
+```javascript
+// Example client-side handler
+likeButton.addEventListener('click', () => {
+  fetch('/api/toggle_like.php', { method: 'POST', body: JSON.stringify({ id: promptId }) })
+    .then(res => res.json())
+    .then(data => {
+      countElem.textContent = data.newCount;
+      showToastNotification('Liked!', true);
+    })
+    .catch(() => showToastNotification('Error liking prompt.', false));
+});
+```
 
-Public API: Launch a public API for developers to integrate Promptly.ai into their own applications.
+---
 
-Theme Customization: Introduce themes like Dark Mode for a personalized viewing experience.
+## Installation & Quick Start
 
-⚙️ How It Works: Application Architecture
-Here's a high-level overview of the application's architecture:
+**Prerequisites**: PHP 7.4+, MySQL 5.7+, Apache/Nginx
 
-+-----------------+      +-----------------+      +-----------------+
-|   User Browser  |----->|   Web Server    |----->|    Database     |
-| (HTML/CSS/JS)   |      |  (PHP Engine)   |      |     (MySQL)     |
-+-----------------+      +-----------------+      +-----------------+
-        |                      ^
-        |                      |
-        +----------------------+
-            (AJAX Requests)
-📁 File Structure
-/promptly-ai
-├── admin/              # Admin dashboard files
-├── api/                # API endpoints for dynamic actions
-├── assets/             # CSS, JavaScript, and image files
-├── includes/           # Reusable PHP files (database connection, etc.)
-└── ... and other files
-🚀 Getting Started: Installation Guide
-Follow these steps to get a local copy of Promptly.ai up and running.
+1. Clone repository:
+    ```bash
+    git clone https://github.com/nadarmurugan/Promptly.ai.git
+    cd promptly-ai
+    ```
+2. Database setup:
+    ```sql
+    CREATE DATABASE promptly_ai;
+    USE promptly_ai;
+    -- Run migrations or let the app auto-create tables on first load
+    ```
+3. Configure database in `includes/db.php`:
+    ```php
+    $host = 'localhost';
+    $dbname = 'promptly_ai';
+    $username = 'your_username';
+    $password = 'your_password';
+    ```
+4. Launch app:
+   - Place in web root (e.g., `htdocs`)
+   - Visit `http://localhost/promptly-ai`
+   - Create admin at `/admin/login.php`
 
-Prerequisites
-A web server (e.g., Apache, Nginx)
+---
 
-PHP 7.4 or higher
+## Project Structure
 
-MySQL or MariaDB
+```text
+promptly-ai/
+├── admin/             # Admin panel (CRUD, user mgmt, contact)
+├── api/               # RESTful endpoints (/get_prompts, /toggle_like, etc.)
+├── assets/            # CSS, JS, images
+│   └── images/        # Diagrams & UI assets
+├── includes/          # Shared PHP components (db, header, footer)
+└── index.php          # Main landing page
+```
 
-1. Clone the Repository
-Bash
+---
 
-git clone https://github.com/nadarmurugan/Promptly.ai.git
-cd Promptly.ai
-2. Database Setup
-Create a new database in your MySQL server (e.g., promptly_ai).
+## Admin Panel Features
 
-Import the database.sql file or manually create the tables using the SQL schema provided in the repository.
+Manage content and system settings:
 
-3. Configure Database Connection
-Open includes/db.php and update the database credentials:
+![Admin Panel Features](assets/images/admin_panel_features.png)
 
-PHP
+- **Dashboard**: Real-time metrics, recent activity
+- **Prompt Management**: Add/Edit/Delete prompts, view analytics
+- **User Management**: Admin roles & permissions
+- **Contact Management**: View/respond submissions
+- **Media Upload**: Image validation & storage
+- **Security**: SQL injection protection, XSS prevention, session security
 
-<?php
-$host = 'localhost';
-$dbname = 'promptly_ai';
-$username = 'your_username';
-$password = 'your_password';
+---
 
-// ... connection logic
-?>
-4. Set Up Your Admin Account
-Navigate to /admin/login.php in your browser.
+## API Endpoints
 
-Register a new admin account or manually insert one into the admins table.
+| Endpoint                  | Method | Description                       |
+|---------------------------|--------|-----------------------------------|
+| `/api/get_prompts.php`    | GET    | Retrieve list of prompts          |
+| `/api/toggle_like.php`    | POST   | Like/unlike a prompt              |
+| `/api/copy_prompt.php`    | POST   | Track copy-to-clipboard action    |
+| `/api/contact_submit.php` | POST   | Submit contact form inquiries     |
 
-🙌 Join the Journey: Contributing
-We believe in the power of community to build something amazing. Your contributions are what will make this project thrive. Whether you're fixing a bug, proposing a new feature, or improving documentation, every bit of help is greatly appreciated!
+---
 
-Fork the Project
+## Database Schema
 
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
+```sql
+CREATE TABLE prompts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  image VARCHAR(255),
+  likes_count INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-Commit your Changes (git commit -m 'Add some AmazingFeature')
+Additional tables: `admins`, `prompt_likes`, `prompt_copies`, `contacts`.
 
-Push to the Branch (git push origin feature/AmazingFeature)
+---
 
-Open a Pull Request
+## Future Roadmap
 
-Let's build the future of AI prompts together!
+- Advanced search/filtering
+- User profiles & personalization
+- Analytics dashboard
+- Third-party AI integrations
+- Native mobile apps (iOS/Android)
 
-👨‍💻 Project Author
-This project was crafted with ❤️ by Jeyamurugan Nadar.
+---
 
-GitHub: nadarmurugan
+## Contributing
 
-Email: murugannadar077@gmail.com
+1. Fork the repo
+2. Create a feature branch
+3. Commit changes
+4. Push & open a Pull Request
 
-Feel free to reach out with any questions, feedback, or collaboration ideas!
+---
+
+## License
+
+This project is licensed under the MIT License.
