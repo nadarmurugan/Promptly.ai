@@ -1,6 +1,6 @@
 
 
-<h1 align="center"># 🚀 Promptly-AI: The Ultimate AI Prompt Hub</h1>h1>
+<h1 align="center"> 🚀 Promptly-AI: The Ultimate AI Prompt Hub</h1>h1>
 
 <p align="center">
   <strong>Your go-to platform for discovering, managing, and sharing the best AI prompts with ease!</strong>
